@@ -4,3 +4,8 @@ export interface Currency {
   symbol?: string;
   flag?: string;
 }
+
+export type CurrencyConverter = {
+  base: string;
+  quote: string;
+}

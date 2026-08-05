@@ -1,5 +1,5 @@
-import { CurrencyConverter } from "@/lib/types";
 import { fetcher } from "@/lib/utils";
+import { CurrencyConverter } from "@/types";
 import useSWR from "swr";
 
 export default function useCurrencyConverter({ base, quote }: CurrencyConverter) {
