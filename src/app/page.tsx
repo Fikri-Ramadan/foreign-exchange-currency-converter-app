@@ -1,9 +1,7 @@
-import Counter from "@/components/Counter";
 
 export default function Home() {
   return (
-    <div>
-      <Counter />
+    <div className="bg-black flex-1">
     </div>
   );
 }
