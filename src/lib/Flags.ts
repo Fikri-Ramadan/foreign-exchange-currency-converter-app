@@ -1,9 +1,4 @@
-export interface CurrencyOption {
-  flag: string;
-  code: string;
-  name: string;
-  isPopular?: boolean;
-}
+import { CurrencyOption } from "@/types";
 
 export const currencies: CurrencyOption[] = [
   { flag: "ae", code: "AED", name: "UAE Dirham" },
@@ -18,7 +13,7 @@ export const currencies: CurrencyOption[] = [
   { flag: "cl", code: "CLP", name: "Chilean Peso" },
   { flag: "cn", code: "CNY", name: "Chinese Yuan" },
   { flag: "co", code: "COP", name: "Colombian Peso" },
-  { flag: "cy", code: "EUR", name: "Euro (Cyprus)" },
+  { flag: "cy", code: "CYP", name: "Euro (Cyprus)" },
   { flag: "cz", code: "CZK", name: "Czech Koruna" },
   { flag: "dk", code: "DKK", name: "Danish Krone" },
   { flag: "eg", code: "EGP", name: "Egyptian Pound" },
@@ -28,7 +23,7 @@ export const currencies: CurrencyOption[] = [
   { flag: "hk", code: "HKD", name: "Hong Kong Dollar" },
   { flag: "hm", code: "AUD", name: "Australian Dollar" },
   { flag: "hn", code: "HNL", name: "Honduran Lempira" },
-  { flag: "hr", code: "EUR", name: "Euro (Croatia)" },
+  { flag: "hr", code: "HRV", name: "Euro (Croatia)" },
   { flag: "ht", code: "HTG", name: "Haitian Gourde" },
   { flag: "hu", code: "HUF", name: "Hungarian Forint" },
   { flag: "id", code: "IDR", name: "Indonesian Rupiah" },
