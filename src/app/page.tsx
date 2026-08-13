@@ -5,7 +5,7 @@ export default function Home() {
     <div className="bg-neutral-900 text-neutral-50 flex-1">
       {/* header */}
       <div className="mb-12"></div>
-      <div className="">
+      <div className="px-5">
         {/* main card */}
         <ConverterCard />
       </div>
