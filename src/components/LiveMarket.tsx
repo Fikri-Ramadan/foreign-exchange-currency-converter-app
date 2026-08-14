@@ -34,11 +34,10 @@ function LivePairItem({ symbol, rate, percentChange, isPositive }: Pick<LiveMark
     <div className="text-xs tracking-wide flex items-center gap-2 border-l border-r border-neutral-500 px-4">
       <div className="text-neutral-200">{symbol}</div>
       <div className="text-neutral-100">{formatCurrency(rate, 4)}</div>
-      <div className={`flex items-center gap-2 
-        ${isPositive ? 'text-green-500' : 'text-red-500'}
-        `}>
-        <span className="text-[8px] font-extralight">{isPositive ? '▲' : '▼'}</span>
-        <span className="font-extralight">{percentChange}%</span>
+      <div className={`flex items-center pl-1 gap-2
+        ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+        <div className="text-[7px] font-bold">{isPositive ? '▲' : '▼'}</div>
+        <div className="font-extralight">{isPositive && '+'}{percentChange}%</div>
       </div>
     </div>
   );
