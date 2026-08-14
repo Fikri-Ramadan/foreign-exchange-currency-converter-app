@@ -65,7 +65,7 @@ export default function CurrencyInput({ inputRef, value, readonly = false }: { i
       [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
       [&::-webkit-inner-spin-button]:appearance-none
       focus-visible:ring-0
-      ${readonly ? 'cursor-default' : `
+      ${readonly ? 'cursor-default text-lime-500' : `
         cursor-text
         focus-visible:border-2
         focus-visible:rounded-lg
