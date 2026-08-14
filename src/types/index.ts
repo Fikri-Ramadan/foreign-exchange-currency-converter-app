@@ -29,6 +29,17 @@ export interface CurrencyConverter {
   log: () => void;
 }
 
+export interface LiveMarketPair {
+  id: string;
+  symbol: string;
+  base: string;
+  quote: string;
+  rate: number;
+  change: number;
+  percentChange: number;
+  isPositive: boolean;
+}
+
 export type CurrencyConvert = {
   base: string;
   quote: string;
