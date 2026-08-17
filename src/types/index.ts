@@ -29,6 +29,11 @@ export interface CurrencyConverter {
   log: () => void;
 }
 
+export interface LiveMarket {
+  currenciesToFetch: string[],
+  marketPairs: LiveMarketPair[],
+}
+
 export interface LiveMarketPair {
   id: string;
   symbol: string;
