@@ -4,9 +4,15 @@ import { useConverter } from "@/stores/ConverterStore";
 import { Input } from "./ui/input";
 import { useEffect, useState } from "react";
 import { formatCurrency } from "@/lib/utils";
+import { useShallow } from "zustand/shallow";
 
 export default function CurrencyInput({ inputRef, value, readonly = false }: { inputRef: React.RefObject<HTMLInputElement>; value: string; readonly?: boolean; }) {
-  const { setSendAmount, setReceiveAmount, rate } = useConverter();
+  const { setSendAmount, setReceiveAmount, rate } = useConverter(
+    useShallow((state) => ({
+      setSendAmount: state.setSendAmount,
+      setReceiveAmount: state.setReceiveAmount,
+      rate: state.rate
+    })));
   const [displayValue, setDisplayValue] = useState(
     !value || +value === 0 ? '' : formatCurrency(+value, 4)
   );

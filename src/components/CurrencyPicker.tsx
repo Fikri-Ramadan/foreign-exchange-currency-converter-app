@@ -10,11 +10,17 @@ import { CurrencyOption } from "@/types";
 import useHasHydrated from "@/hooks/useHasHydrated";
 import useExchangeRate from "@/hooks/useExchangeRate";
 import { useConverter } from "@/stores/ConverterStore";
+import { useShallow } from "zustand/shallow";
 
 export default function CurrencyPicker({ type }: { type: 'SEND' | 'RECEIVE'; }) {
   const [open, setOpen] = useState<boolean>(false);
   const { hasHydrated } = useHasHydrated();
-  const { send, receive } = useConverter();
+  const { send, receive } = useConverter(
+    useShallow((state) => ({
+      send: state.send,
+      receive: state.receive
+    }))
+  );
   const { isValidating } = useExchangeRate();
 
   return (

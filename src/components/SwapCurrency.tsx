@@ -6,7 +6,7 @@ import { useConverter } from "@/stores/ConverterStore";
 import useExchangeRate from "@/hooks/useExchangeRate";
 
 export default function SwapCurrency() {
-  const { swapCurrency } = useConverter();
+  const swapCurrency = useConverter((state) => state.swapCurrency);
   const { isValidating } = useExchangeRate();
 
   return (
