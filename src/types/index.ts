@@ -29,7 +29,36 @@ export interface CurrencyConverter {
   log: () => void;
 }
 
+export interface LiveMarket {
+  currenciesToFetch: string[],
+  marketPairs: LiveMarketPair[],
+  setMarketPairs: (marketPairs: LiveMarketPair[]) => void;
+}
+
+export interface LiveMarketPair {
+  id: string;
+  symbol: string;
+  base: string;
+  quote: string;
+  rate: number;
+  change: number;
+  percentChange: number;
+  isPositive: boolean;
+}
+
 export type CurrencyConvert = {
   base: string;
   quote: string;
 };
+
+export type RateListResponse = {
+  date: string;
+  base: string;
+  quote: string;
+  rate: number;
+};
+
+export type USDRateMap = Record<
+  string, {
+    prev: number; latest: number;
+  }>;

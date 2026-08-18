@@ -4,17 +4,23 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "./ui/command";
-import { currencies } from "@/lib/Flags";
+import { CURRENCIES } from "@/lib/Flags";
 import Image from "next/image";
 import { CurrencyOption } from "@/types";
 import useHasHydrated from "@/hooks/useHasHydrated";
 import useExchangeRate from "@/hooks/useExchangeRate";
 import { useConverter } from "@/stores/ConverterStore";
+import { useShallow } from "zustand/shallow";
 
 export default function CurrencyPicker({ type }: { type: 'SEND' | 'RECEIVE'; }) {
   const [open, setOpen] = useState<boolean>(false);
   const { hasHydrated } = useHasHydrated();
-  const { send, receive } = useConverter();
+  const { send, receive } = useConverter(
+    useShallow((state) => ({
+      send: state.send,
+      receive: state.receive
+    }))
+  );
   const { isValidating } = useExchangeRate();
 
   return (
@@ -55,29 +61,29 @@ function CommandBox({ type, codePicked, setOpen }: { type: 'SEND' | 'RECEIVE'; c
       <Command className="w-95 bg-neutral-600" >
         <CommandInput placeholder="Search currencies..." />
         <CommandList>
-          <CommandEmpty>No currencies found.</CommandEmpty>
+          <CommandEmpty>No CURRENCIES found.</CommandEmpty>
           <CommandGroup>
             <div className="flex justify-between px-3 pt-3 text-neutral-200">
-              <span>POPULAR</span><span>{currencies.filter((item) => item.isPopular).length}</span>
+              <span>POPULAR</span><span>{CURRENCIES.filter((item) => item.isPopular).length}</span>
             </div>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup>
             {
-              currencies.filter((item) => item.isPopular).map((item, index) => (
+              CURRENCIES.filter((item) => item.isPopular).map((item, index) => (
                 <CommandItemComp key={index} type={type} item={item} codePicked={codePicked} setOpen={setOpen} />
               ))
             }
           </CommandGroup>
           <CommandGroup>
             <div className="flex justify-between px-2 pt-1 text-neutral-200">
-              <span>OTHER CURRENCIES</span><span>{currencies.filter((item) => !item.isPopular).length}</span>
+              <span>OTHER CURRENCIES</span><span>{CURRENCIES.filter((item) => !item.isPopular).length}</span>
             </div>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup >
             {
-              currencies.filter((item) => !item.isPopular).map((item, index) => (
+              CURRENCIES.filter((item) => !item.isPopular).map((item, index) => (
                 <CommandItemComp key={index} type={type} item={item} codePicked={codePicked} setOpen={setOpen} />
               ))
             }
@@ -92,7 +98,7 @@ function CommandItemComp({ type, item, codePicked, setOpen }: { type: 'SEND' | '
   const { setSend, setReceive } = useConverter();
 
   const handleSelect = (value: string) => {
-    const pickedCurrency = currencies.find((curr: CurrencyOption) => curr.code == value.split(' ')[0]);
+    const pickedCurrency = CURRENCIES.find((curr: CurrencyOption) => curr.code == value.split(' ')[0]);
     if (pickedCurrency) {
       type == 'SEND' ? setSend(pickedCurrency) : setReceive(pickedCurrency);
     };

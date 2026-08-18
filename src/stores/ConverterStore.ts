@@ -1,8 +1,9 @@
 import { CurrencyConverter, CurrencyOption } from "@/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { useShallow } from "zustand/shallow";
 
-export const useConverter = create<CurrencyConverter>()(
+const converterStore = create<CurrencyConverter>()(
   persist(
     (set, get) => ({
       send: {
@@ -61,3 +62,5 @@ export const useConverter = create<CurrencyConverter>()(
     },
   )
 );
+
+export const useConverter = converterStore;

@@ -1,6 +1,6 @@
 import { CurrencyOption } from "@/types";
 
-export const currencies: CurrencyOption[] = [
+export const CURRENCIES: CurrencyOption[] = [
   { flag: "ae", code: "AED", name: "UAE Dirham" },
   { flag: "ar", code: "ARS", name: "Argentine Peso" },
   { flag: "au", code: "AUD", name: "Australian Dollar" },

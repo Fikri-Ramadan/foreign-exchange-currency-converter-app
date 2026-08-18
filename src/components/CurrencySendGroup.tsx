@@ -7,7 +7,7 @@ import { useConverter } from "@/stores/ConverterStore";
 
 export default function CurrencySendGroup() {
   const inputRef = useRef<HTMLInputElement>(null!);
-  const { sendAmount } = useConverter();
+  const sendAmount = useConverter((state) => state.sendAmount);
 
   return (
     <div className="bg-neutral-600 flex-1 rounded-3xl border border-neutral-400 p-5 flex flex-col">
