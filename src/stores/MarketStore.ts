@@ -22,12 +22,9 @@ const liveMarketStore = create<LiveMarket>()(
     (set, get) => ({
       currenciesToFetch: initCurrenciesToFetch(),
       marketPairs: [],
-      addMatketPairs: (marketPair: LiveMarketPair) => set(() => ({
-        marketPairs: [...get().marketPairs, marketPair]
-      })),
-      setMarketPairs: (marketPairs: LiveMarketPair[]) => set(() => ({
+      setMarketPairs: (marketPairs) => set(() => ({
         marketPairs: [...marketPairs]
-      })),
+      }))
     }),
     {
       name: 'live-market-storage',
@@ -36,9 +33,4 @@ const liveMarketStore = create<LiveMarket>()(
   )
 );
 
-export const useLiveMarket: () => LiveMarket = () => liveMarketStore(
-  useShallow((state) => ({
-    marketPairs: state.marketPairs,
-    currenciesToFetch: state.currenciesToFetch,
-  }))
-); 
+export const useLiveMarket = liveMarketStore;

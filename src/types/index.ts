@@ -32,6 +32,7 @@ export interface CurrencyConverter {
 export interface LiveMarket {
   currenciesToFetch: string[],
   marketPairs: LiveMarketPair[],
+  setMarketPairs: (marketPairs: LiveMarketPair[]) => void;
 }
 
 export interface LiveMarketPair {
@@ -49,3 +50,15 @@ export type CurrencyConvert = {
   base: string;
   quote: string;
 };
+
+export type RateListResponse = {
+  date: string;
+  base: string;
+  quote: string;
+  rate: number;
+};
+
+export type USDRateMap = Record<
+  string, {
+    prev: number; latest: number;
+  }>;

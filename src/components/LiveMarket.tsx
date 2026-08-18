@@ -1,8 +1,18 @@
+'use client';
+
+import useLiveMarketData from "@/hooks/useLiveMarketData";
 import { LIVE_MARKET_PAIRS } from "@/lib/LiveMarketPair";
 import { formatCurrency } from "@/lib/utils";
+import { useLiveMarket } from "@/stores/MarketStore";
 import { LiveMarketPair } from "@/types";
+import { useShallow } from "zustand/shallow";
 
 export default function LiveMarket() {
+  const marketPairs = useLiveMarket((state) => state.marketPairs);
+  const { isValidating } = useLiveMarketData();
+
+  if (isValidating) return <div className="text-2xl text-neutral-100">Loading...</div>;
+
   return (
     <div className="h-10 flex items-center">
       <div className="h-full bg-lime-500 text-neutral-500 px-4 flex items-center justify-center gap-2">
@@ -14,7 +24,7 @@ export default function LiveMarket() {
       <div className="w-full h-full flex-1 bg-neutral-700 flex overflow-hidden scrollbar-none">
         <div className="flex whitespace-nowrap animate-autoscroll hover:paused">
           {
-            LIVE_MARKET_PAIRS.map((item, index) => (
+            marketPairs.map((item, index) => (
               <LivePairItem key={`orig-${index}`} symbol={item.symbol} rate={item.rate} percentChange={item.percentChange} isPositive={item.isPositive} />
             ))
           }
@@ -37,7 +47,7 @@ function LivePairItem({ symbol, rate, percentChange, isPositive }: Pick<LiveMark
       <div className={`flex items-center pl-1 gap-2
         ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
         <div className="text-[7px] font-bold">{isPositive ? '▲' : '▼'}</div>
-        <div className="font-extralight">{isPositive && '+'}{percentChange}%</div>
+        <div className="font-extralight">{isPositive && '+'}{percentChange.toFixed(2)}%</div>
       </div>
     </div>
   );
