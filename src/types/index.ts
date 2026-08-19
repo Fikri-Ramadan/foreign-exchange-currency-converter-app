@@ -62,3 +62,13 @@ export type USDRateMap = Record<
   string, {
     prev: number; latest: number;
   }>;
+
+export type LogConversion = {
+  timestamp: number;
+  base: string;
+  quote: string;
+  sendAmount: string;
+  receiveAmount: string;
+};
+
+export type TabValue = 'history' | 'compare' | 'favorites' | 'log';

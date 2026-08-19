@@ -1,15 +1,20 @@
 import ConverterCard from "@/components/ConverterCard";
 import Header from "@/components/Header";
+import NavigationTabs from "@/components/NavigationTabs";
+import NavigationTabSkeleton from "@/components/NavigationTabSkeleton";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <div className="bg-neutral-900 text-neutral-50 flex-1">
-      {/* header */}
-      <Header />
-      <div className="mb-12"></div>
-      <div className="px-5">
-        {/* main card */}
+      <div className="mb-10">
+        <Header />
+      </div>
+      <div className="px-5 space-y-12">
         <ConverterCard />
+        <Suspense fallback={<NavigationTabSkeleton />}>
+          <NavigationTabs />
+        </Suspense>
       </div>
     </div>
   );
