@@ -8,7 +8,7 @@ import RateInfo from "./RateInfo";
 export default function ConverterCard() {
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-259 mx-auto">
       <div className="text-xl mb-5 text-neutral-100">CHECK THE RATE</div>
       <div className="bg-neutral-700 h-40 rounded-t-3xl p-5 flex flex-1 gap-3 lg:gap-6">
         <CurrencySendGroup />

@@ -4,6 +4,7 @@ import { TabValue } from "@/types";
 import TabLog from "./TabLog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useRouter, useSearchParams } from "next/navigation";
+import Badge from "./Badge";
 
 export default function NavigationTabs() {
   const params = useSearchParams();
@@ -15,7 +16,7 @@ export default function NavigationTabs() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-259 mx-auto">
       <div className="h-40 rounded-3xl">
         <Tabs value={currentTab}
           onValueChange={handleChange}>
@@ -23,12 +24,12 @@ export default function NavigationTabs() {
             <TabsTrigger value="history">HISTORY</TabsTrigger>
             <TabsTrigger value="compare">COMPARE</TabsTrigger>
             <TabsTrigger value="favorites">FAVORITES</TabsTrigger>
-            <TabsTrigger value="log">LOG</TabsTrigger>
+            <TabsTrigger value="log">LOG <Badge amount={8} /></TabsTrigger>
           </TabsList>
           <TabsContent value="history">History</TabsContent>
           <TabsContent value="compare">Compare</TabsContent>
           <TabsContent value="favorites">Favorites</TabsContent>
-          <TabsContent value="log"><TabLog /></TabsContent>
+          <TabsContent value="log"><TabLog totalLog={8} /></TabsContent>
         </Tabs>
       </div>
     </div>

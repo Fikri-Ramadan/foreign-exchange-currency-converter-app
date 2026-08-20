@@ -7,9 +7,9 @@ export function cn(...inputs: ClassValue[]) {
 
 export const fetcher = (...args: [string]) => fetch(...args).then(res => res.json());
 
-export const formatCurrency = (rawCurr: number, maximumFraction: number) =>
+export const formatCurrency = (rawCurr: number, maximumFraction: number, minimumFraction: number = 0) =>
   new Intl.NumberFormat('en-US', {
-    minimumFractionDigits: 0,
+    minimumFractionDigits: minimumFraction,
     maximumFractionDigits: maximumFraction,
   }).format(rawCurr);
 ;
