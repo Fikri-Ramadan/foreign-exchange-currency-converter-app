@@ -64,11 +64,13 @@ export type USDRateMap = Record<
   }>;
 
 export type LogConversion = {
-  timestamp: number;
+  timestamp: Date;
   base: string;
   quote: string;
-  sendAmount: string;
-  receiveAmount: string;
+  sendAmount: number;
+  receiveAmount: number;
 };
 
 export type TabValue = 'history' | 'compare' | 'favorites' | 'log';
+
+export type TimeSubUnit = 'Y' | 'MO' | 'W' | 'D' | 'H' | 'M' | 'S';
