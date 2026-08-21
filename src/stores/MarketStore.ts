@@ -1,8 +1,7 @@
 import { PAIRS_TO_FETCH } from "@/lib/LiveMarketPair";
-import { LiveMarket, LiveMarketPair } from "@/types";
+import { LiveMarket } from "@/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { useShallow } from "zustand/shallow";
 
 const initCurrenciesToFetch = (): string[] => {
   const pairs = new Set<string>();

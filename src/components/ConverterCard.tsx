@@ -4,11 +4,12 @@ import CurrencySendGroup from "./CurrencySendGroup";
 import CurrencyReceiveGroup from "./CurrencyReceiveGroup";
 import SwapCurrency from "./SwapCurrency";
 import RateInfo from "./RateInfo";
+import AddConversionButton from "./AddConversionButton";
 
 export default function ConverterCard() {
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-259 mx-auto">
       <div className="text-xl mb-5 text-neutral-100">CHECK THE RATE</div>
       <div className="bg-neutral-700 h-40 rounded-t-3xl p-5 flex flex-1 gap-3 lg:gap-6">
         <CurrencySendGroup />
@@ -42,7 +43,7 @@ export default function ConverterCard() {
               /> FAVORITED
             </div>
           </Button>
-          <Button className={'bg-transparent text-[12px] tracking-wider text-neutral-50 h-8 border border-lime-500'}>LOG CONVERTION</Button>
+          <AddConversionButton />
         </div>
       </div>
     </div>

@@ -5,13 +5,10 @@ import { LIVE_MARKET_PAIRS } from "@/lib/LiveMarketPair";
 import { formatCurrency } from "@/lib/utils";
 import { useLiveMarket } from "@/stores/MarketStore";
 import { LiveMarketPair } from "@/types";
-import { useShallow } from "zustand/shallow";
 
 export default function LiveMarket() {
   const marketPairs = useLiveMarket((state) => state.marketPairs);
   const { isValidating } = useLiveMarketData();
-
-  if (isValidating) return <div className="text-2xl text-neutral-100">Loading...</div>;
 
   return (
     <div className="h-10 flex items-center">
@@ -21,20 +18,25 @@ export default function LiveMarket() {
         </svg>
         <div className="text-xs text-neutral-950 font-bold tracking-wide">LIVE MARKETS</div>
       </div>
-      <div className="w-full h-full flex-1 bg-neutral-700 flex overflow-hidden scrollbar-none">
-        <div className="flex whitespace-nowrap animate-autoscroll hover:paused">
-          {
-            marketPairs.map((item, index) => (
-              <LivePairItem key={`orig-${index}`} symbol={item.symbol} rate={item.rate} percentChange={item.percentChange} isPositive={item.isPositive} />
-            ))
-          }
-          {
-            LIVE_MARKET_PAIRS.map((item, index) => (
-              <LivePairItem key={`dup-${index}`} symbol={item.symbol} rate={item.rate} percentChange={item.percentChange} isPositive={item.isPositive} />
-            ))
-          }
-        </div>
-      </div>
+      {
+        isValidating ?
+          <div className="w-full h-full bg-neutral-500 animate-pulse" />
+          :
+          <div className="w-full h-full flex-1 bg-neutral-700 flex overflow-hidden scrollbar-none">
+            <div className="flex whitespace-nowrap animate-autoscroll hover:paused">
+              {
+                marketPairs.map((item, index) => (
+                  <LivePairItem key={`orig-${index}`} symbol={item.symbol} rate={item.rate} percentChange={item.percentChange} isPositive={item.isPositive} />
+                ))
+              }
+              {
+                LIVE_MARKET_PAIRS.map((item, index) => (
+                  <LivePairItem key={`dup-${index}`} symbol={item.symbol} rate={item.rate} percentChange={item.percentChange} isPositive={item.isPositive} />
+                ))
+              }
+            </div>
+          </div>
+      }
     </div>
   );
 }

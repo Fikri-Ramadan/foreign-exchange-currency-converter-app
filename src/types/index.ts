@@ -12,6 +12,22 @@ export interface CurrencyOption {
   isPopular?: boolean;
 }
 
+export interface LogConversion {
+  id: string;
+  createdAt: Date;
+  send: CurrencyOption;
+  receive: CurrencyOption;
+  sendAmount: number;
+  receiveAmount: number;
+};
+
+export interface LogStore {
+  logs: LogConversion[];
+  addLog: (log: LogConversion) => void;
+  deleteLogById: (id: string) => void;
+  clearLog: () => void;
+}
+
 export interface CurrencyConverter {
   send: CurrencyOption;
   receive: CurrencyOption;
@@ -62,3 +78,7 @@ export type USDRateMap = Record<
   string, {
     prev: number; latest: number;
   }>;
+
+export type TabValue = 'history' | 'compare' | 'favorites' | 'log';
+
+export type TimeSubUnit = 'Y' | 'MO' | 'W' | 'D' | 'H' | 'M' | 'S';

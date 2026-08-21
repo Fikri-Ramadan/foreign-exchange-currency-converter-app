@@ -5,7 +5,6 @@ export const CURRENCIES: CurrencyOption[] = [
   { flag: "ar", code: "ARS", name: "Argentine Peso" },
   { flag: "au", code: "AUD", name: "Australian Dollar" },
   { flag: "bd", code: "BDT", name: "Bangladeshi Taka" },
-  { flag: "bg", code: "BGN", name: "Bulgarian Lev" },
   { flag: "bh", code: "BHD", name: "Bahraini Dinar" },
   { flag: "br", code: "BRL", name: "Brazilian Real" },
   { flag: "ca", code: "CAD", name: "Canadian Dollar" },
