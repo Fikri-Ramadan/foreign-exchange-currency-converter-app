@@ -5,8 +5,11 @@ import TabLog from "./TabLog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useRouter, useSearchParams } from "next/navigation";
 import Badge from "./Badge";
+import { useLogConversion } from "@/stores/LogConversionStore";
 
 export default function NavigationTabs() {
+  const logs = useLogConversion((state) => state.logs);
+  
   const params = useSearchParams();
   const router = useRouter();
   const currentTab = (params.get('tab') as TabValue) ?? 'history';
@@ -24,12 +27,12 @@ export default function NavigationTabs() {
             <TabsTrigger value="history">HISTORY</TabsTrigger>
             <TabsTrigger value="compare">COMPARE</TabsTrigger>
             <TabsTrigger value="favorites">FAVORITES</TabsTrigger>
-            <TabsTrigger value="log">LOG <Badge amount={8} /></TabsTrigger>
+            <TabsTrigger value="log">LOG <Badge amount={logs.length} /></TabsTrigger>
           </TabsList>
           <TabsContent value="history">History</TabsContent>
           <TabsContent value="compare">Compare</TabsContent>
           <TabsContent value="favorites">Favorites</TabsContent>
-          <TabsContent value="log"><TabLog totalLog={8} /></TabsContent>
+          <TabsContent value="log"><TabLog /></TabsContent>
         </Tabs>
       </div>
     </div>

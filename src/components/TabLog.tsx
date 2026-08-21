@@ -1,26 +1,52 @@
-import LogCard from "./LogCard";
-import { Button } from "./ui/button";
+'use client';
 
-export default function TabLog({ totalLog }: { totalLog: number; }) {
+import { useLogConversion } from "@/stores/LogConversionStore";
+import LogCard from "./LogCard";
+import ClearLogButton from "./ClearLogButton";
+import useHasHydrated from "@/hooks/useHasHydrated";
+
+export default function TabLog() {
+  const logs = useLogConversion((state) => state.logs);
+  const { hasHydrated } = useHasHydrated();
+
+  if (!hasHydrated) {
+    return <></>
+  }
+  
+  if (logs.length === 0) {
+    return (
+      <div className="mx-auto mt-8 pb-10 text-center">
+        <div className="mb-4 text-2xl text-neutral-100 tracking-wider">No conversions logged yet</div>
+        <div className="text-lg text-neutral-200 tracking-wide">Every conversion is recorded here automatically when you tap LOG CONVERSION.</div>
+        <div className="text-lg text-neutral-200 tracking-wide">Your log is private to this session and this browser.</div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-neutral-700 rounded-3xl p-5 space-y-5">
       <div className="tracking-wider flex items-center justify-between">
         <div className="text-base">CONVERSION LOG</div>
         <div className="flex items-center gap-3">
-          <div className="text-xs text-neutral-100/70">{totalLog} LOGGED</div>
-          <Button variant={'outline'} className={'text-neutral-100/50 text-xs rounded-md h-7 py-3.25 border border-neutral-500'}>CLEAR ALL</Button>
+          <div className="text-xs text-neutral-100/70">{logs.length} LOGGED</div>
+          <ClearLogButton />
         </div>
       </div>
 
       <div className="space-y-3">
-        <LogCard timestamp={new Date(Date.now() - 5 * 3600 * 1000)} base={"USD"} quote={'EUR'} sendAmount={1000} receiveAmount={598} />
-        <LogCard timestamp={new Date(Date.now() - 5 * 3600 * 1000)} base={"USD"} quote={'EUR'} sendAmount={1000} receiveAmount={598} />
-        <LogCard timestamp={new Date(Date.now() - 5 * 3600 * 1000)} base={"USD"} quote={'EUR'} sendAmount={1000} receiveAmount={598} />
-        <LogCard timestamp={new Date(Date.now() - 5 * 3600 * 1000)} base={"USD"} quote={'EUR'} sendAmount={1000} receiveAmount={598} />
-        <LogCard timestamp={new Date(Date.now() - 5 * 3600 * 1000)} base={"USD"} quote={'EUR'} sendAmount={1000} receiveAmount={598} />
-        <LogCard timestamp={new Date(Date.now() - 5 * 3600 * 1000)} base={"USD"} quote={'EUR'} sendAmount={1000} receiveAmount={598} />
-        <LogCard timestamp={new Date(Date.now() - 5 * 3600 * 1000)} base={"USD"} quote={'EUR'} sendAmount={1000} receiveAmount={598} />
-        <LogCard timestamp={new Date(Date.now() - 5 * 3600 * 1000)} base={"USD"} quote={'EUR'} sendAmount={1000} receiveAmount={598} />
+        {
+          logs.map((log) => (
+            <LogCard
+              key={log.id}
+              id={log.id}
+              createdAt={log.createdAt}
+              send={log.send}
+              receive={log.receive}
+              sendAmount={log.sendAmount}
+              receiveAmount={log.receiveAmount}
+            />
+          ))
+        }
       </div>
     </div>
   );

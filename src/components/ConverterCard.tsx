@@ -4,6 +4,7 @@ import CurrencySendGroup from "./CurrencySendGroup";
 import CurrencyReceiveGroup from "./CurrencyReceiveGroup";
 import SwapCurrency from "./SwapCurrency";
 import RateInfo from "./RateInfo";
+import AddConversionButton from "./AddConversionButton";
 
 export default function ConverterCard() {
 
@@ -42,7 +43,7 @@ export default function ConverterCard() {
               /> FAVORITED
             </div>
           </Button>
-          <Button className={'bg-transparent text-[12px] tracking-wider text-neutral-50 h-8 border border-lime-500'}>LOG CONVERTION</Button>
+          <AddConversionButton />
         </div>
       </div>
     </div>
