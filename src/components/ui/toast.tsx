@@ -137,7 +137,7 @@ function ToastIcon({ type }: { type: string | undefined }) {
 
   if (type === "success") {
     icon = (
-      <CircleCheckIcon aria-hidden="true" />
+      <CircleCheckIcon aria-hidden="true" className=" text-green-500" />
     )
   }
 
@@ -188,7 +188,7 @@ function ToastList() {
         <ToastIcon type={toastItem.type} />
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <ToastTitle />
-          <ToastDescription />
+          <ToastDescription className={toastItem.type == 'success' ? 'text-green-500' : ''} />
         </div>
         <ToastAction />
         <ToastClose />

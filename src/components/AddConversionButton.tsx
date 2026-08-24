@@ -7,7 +7,8 @@ import { useShallow } from "zustand/shallow";
 import useExchangeRate from "@/hooks/useExchangeRate";
 import { useState } from "react";
 import { Check } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { toast } from "./ui/toast";
 
 export default function AddConversionButton() {
   const router = useRouter();
@@ -34,6 +35,10 @@ export default function AddConversionButton() {
       receive: receive,
       sendAmount: sendAmount ?? 0,
       receiveAmount: receiveAmount ?? 0
+    });
+    toast.add({
+      type: "success",
+      description: "Conversion has been added to Log",
     });
     router.push(`?tab=log`, { scroll: false });
     setTimeout(() => {
