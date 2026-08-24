@@ -49,7 +49,7 @@ function LivePairItem({ symbol, rate, percentChange, isPositive }: Pick<LiveMark
       <div className={`flex items-center pl-1 gap-2
         ${percentChange == 0 ? 'text-neutral-200' : isPositive ? 'text-green-500' : 'text-red-500'}`}>
         <div className="text-[7px] font-bold">{percentChange == 0 ? '' : isPositive ? '▲' : '▼'}</div>
-        <div className="font-extralight">{percentChange == 0 ? '' : isPositive && '+'}{percentChange.toFixed(3)}%</div>
+        <div className="font-extralight">{percentChange == 0 ? '' : isPositive && '+'}{formatCurrency(percentChange, 4, 1)}%</div>
       </div>
     </div>
   );
