@@ -12,22 +12,6 @@ export interface CurrencyOption {
   isPopular?: boolean;
 }
 
-export interface LogConversion {
-  id: string;
-  createdAt: Date;
-  send: CurrencyOption;
-  receive: CurrencyOption;
-  sendAmount: number;
-  receiveAmount: number;
-};
-
-export interface LogStore {
-  logs: LogConversion[];
-  addLog: (log: LogConversion) => void;
-  deleteLogById: (id: string) => void;
-  clearLog: () => void;
-}
-
 export interface CurrencyConverter {
   send: CurrencyOption;
   receive: CurrencyOption;
@@ -72,6 +56,37 @@ export type RateListResponse = {
   base: string;
   quote: string;
   rate: number;
+};
+
+export interface LogConversion {
+  id: string;
+  createdAt: Date;
+  send: CurrencyOption;
+  receive: CurrencyOption;
+  sendAmount: number;
+  receiveAmount: number;
+};
+
+export interface LogStore {
+  logs: LogConversion[];
+  addLog: (log: LogConversion) => void;
+  deleteLogById: (id: string) => void;
+  clearLog: () => void;
+}
+
+export interface UserFavStore {
+  favorites: Favorite[];
+  checkFavoriteExist: ({ base, quote }: Pick<Favorite, 'base' | 'quote'>) => boolean;
+  toggleFavorite: (fav: Favorite) => void;
+  updateFavorites: (favs: Favorite[]) => void;
+  deleteFavoriteById: (id: string) => void;
+}
+
+export type Favorite = {
+  id: string;
+  base: string;
+  quote: string;
+  rateDetails?: Pick<LiveMarketPair, 'rate' | 'change' | 'percentChange' | 'isPositive'>
 };
 
 export type USDRateMap = Record<
