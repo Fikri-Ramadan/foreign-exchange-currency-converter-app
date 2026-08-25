@@ -48,32 +48,3 @@ export default function useExchangeRate() {
     mutate
   };
 }
-
-// export default function useExchangeRate() {
-//   const { send: { code: base }, receive: { code: quote }, sendAmount, setRate, setReceiveAmount } = useConverter();
-
-//   const { data, trigger, isMutating, error } = useSWRMutation(
-//     'EXCHANGE_RATE_API',
-//     sendRequest,
-//     {
-//       onSuccess: (data) => {
-//         data?.rate && setRate(data.rate);
-//         if (data?.rate) {
-//           setRate(data.rate);
-//           setReceiveAmount((sendAmount ?? 0) * data.rate);
-//         }
-//       }
-//     }
-//   );
-
-//   const safeTrigger = (arg?: { base: string; quote: string; }) => {
-//     return trigger(arg || { base, quote });
-//   };
-
-//   return {
-//     data,
-//     trigger: safeTrigger,
-//     isMutating,
-//     isError: error
-//   };
-// }
