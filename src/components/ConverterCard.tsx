@@ -1,10 +1,9 @@
-import Image from "next/image";
-import { Button } from "./ui/button";
 import CurrencySendGroup from "./CurrencySendGroup";
 import CurrencyReceiveGroup from "./CurrencyReceiveGroup";
 import SwapCurrency from "./SwapCurrency";
 import RateInfo from "./RateInfo";
 import AddConversionButton from "./AddConversionButton";
+import AddFavButton from "./AddFavButton";
 
 export default function ConverterCard() {
 
@@ -32,17 +31,7 @@ export default function ConverterCard() {
       <div className="bg-neutral-700 h-16 rounded-b-3xl flex items-center justify-between px-5">
         <RateInfo />
         <div className="space-x-2 flex">
-          <Button className={'bg-lime-500 text-[12px] tracking-wider text-neutral-900 font-bold h-8'}>
-            <div className="flex items-center gap-2 px-1">
-              <Image
-                src={'/assets/images/icon-star-filled.svg'}
-                alt="icon start"
-                width={16}
-                height={16}
-                className="brightness-0"
-              /> FAVORITED
-            </div>
-          </Button>
+          <AddFavButton />
           <AddConversionButton />
         </div>
       </div>

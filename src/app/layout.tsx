@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toast";
 
 const jetBrainMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
@@ -22,7 +23,10 @@ export default function RootLayout({
       lang="en"
       className={`${jetBrainMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col dark">{children}</body>
+      <body className="min-h-full flex flex-col dark">
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

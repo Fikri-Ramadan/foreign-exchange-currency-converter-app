@@ -6,10 +6,12 @@ import { useConverter } from "@/stores/ConverterStore";
 import { useShallow } from "zustand/shallow";
 import useExchangeRate from "@/hooks/useExchangeRate";
 import { useState } from "react";
-import Image from "next/image";
 import { Check } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "./ui/toast";
 
 export default function AddConversionButton() {
+  const router = useRouter();
   const { isValidating } = useExchangeRate();
   const { send, receive, sendAmount, receiveAmount } = useConverter(
     useShallow((state) => ({
@@ -34,6 +36,11 @@ export default function AddConversionButton() {
       sendAmount: sendAmount ?? 0,
       receiveAmount: receiveAmount ?? 0
     });
+    toast.add({
+      type: "success",
+      description: "Conversion has been added to Log",
+    });
+    router.push(`?tab=log`, { scroll: false });
     setTimeout(() => {
       setIsSaving(false);
     }, 1000);

@@ -19,7 +19,7 @@ const LogConversionStore = create<LogStore>()(
       }))
     }),
     {
-      name: 'user-log-conversion-store',
+      name: 'user-log-conversion-storage',
       storage: createJSONStorage(() => localStorage)
     }
   )
