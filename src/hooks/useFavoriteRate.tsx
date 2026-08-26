@@ -31,11 +31,11 @@ export default function useFavoriteRate() {
   const fromfiveDayAgo = fiveDayAgo.toISOString().split('T')[0];
 
   const { data, isLoading, isValidating, error } = useSWR(
-    `https://api.frankfurter.dev/v2/rates?from=${fromfiveDayAgo}&base=USD&quotes=${[...currenciesToFetch].toString()}`,
+    favorites.length === 0 ? null : `https://api.frankfurter.dev/v2/rates?from=${fromfiveDayAgo}&base=USD&quotes=${[...currenciesToFetch].toString()}`,
     fetcher,
     {
       onSuccess: (data) => {
-        if (data) {
+        if (data?.length > 0) {
           const USDRate: USDRateMap = {};
           data.forEach((item: RateListResponse) => {
             const oldLatest = USDRate[item.quote]?.latest ?? item.rate;
