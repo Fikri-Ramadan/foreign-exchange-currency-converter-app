@@ -9,25 +9,24 @@ import { toast } from "./ui/toast";
 import { useRouter } from "next/navigation";
 import useHasHydrated from "@/hooks/useHasHydrated";
 import useExchangeRate from "@/hooks/useExchangeRate";
+import { useState } from "react";
 
 export default function AddFavButton() {
   const { hasHydrated } = useHasHydrated();
 
   const router = useRouter();
-  const {isValidating} = useExchangeRate();
+  const { isValidating } = useExchangeRate();
 
   const { send, receive } = useConverter(useShallow((state) => ({
     send: state.send,
     receive: state.receive,
   })));
 
-  const { checkFavoriteExist, toggleFavorite } = useUserFavorites(useShallow((state) => ({
-    favorites: state.favorites,
-    checkFavoriteExist: state.checkFavoriteExist,
-    toggleFavorite: state.toggleFavorite
-  })));
+  const isFavExist = useUserFavorites((state) =>
+    state.favorites.some(f => f.base === send.code && f.quote === receive.code)
+  );
 
-  const isFavExist = checkFavoriteExist({ base: send.code, quote: receive.code });
+  const toggleFavorite = useUserFavorites((state) => state.toggleFavorite);
 
   const handleAddFavorite = () => {
     toggleFavorite({
@@ -36,23 +35,19 @@ export default function AddFavButton() {
       quote: receive.code,
     });
 
-    if (isFavExist) {
-      toast.add({
-        type: "success",
-        description: "Conversion has been removed from Favorites",
-      });
-    } else {
-      toast.add({
-        type: "success",
-        description: "Conversion has been added to Favorites",
-      });
+    toast.add({
+      type: "success",
+      description: isFavExist
+        ? "Removed from Favorites"
+        : "Added to Favorites",
+    });
+
+    if (!isFavExist) {
       router.push(`?tab=favorites`, { scroll: false });
     }
   };
 
-  if (!hasHydrated) {
-    return <></>;
-  }
+  if (!hasHydrated) return null;
 
   return (
     <Button
