@@ -29,7 +29,7 @@ export default function useFavoriteRate() {
   const fiveDayAgo = new Date();
   fiveDayAgo.setDate(fiveDayAgo.getDate() - 7);
   const fromfiveDayAgo = fiveDayAgo.toISOString().split('T')[0];
-  console.log(`quotes=${[...currenciesToFetch].toString()}`)
+
   const { data, isLoading, isValidating, error } = useSWR(
     `https://api.frankfurter.dev/v2/rates?from=${fromfiveDayAgo}&base=USD&quotes=${[...currenciesToFetch].toString()}`,
     fetcher,
@@ -78,7 +78,7 @@ export default function useFavoriteRate() {
         console.error('Failed to fetch:', err);
       },
       revalidateOnFocus: false,
-      dedupingInterval: 2000,
+      dedupingInterval: 0,
     }
   );
 
