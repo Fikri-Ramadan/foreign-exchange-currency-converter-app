@@ -6,7 +6,6 @@ import { useUserFavorites } from "@/stores/UserFavoritesStore";
 import { useConverter } from "@/stores/ConverterStore";
 import { useShallow } from "zustand/shallow";
 import { toast } from "./ui/toast";
-import { useRouter } from "next/navigation";
 import useHasHydrated from "@/hooks/useHasHydrated";
 import useExchangeRate from "@/hooks/useExchangeRate";
 import useFavoriteRate from "@/hooks/useFavoriteRate";
@@ -16,7 +15,6 @@ export default function AddFavButton() {
   const [isProcessing, setIsProcessing] = useState(false);
   const { hasHydrated } = useHasHydrated();
 
-  const router = useRouter();
   const { isValidating: isValidatingExchange } = useExchangeRate();
   const { isValidating: isValidatingFav } = useFavoriteRate();
 
@@ -49,11 +47,7 @@ export default function AddFavButton() {
 
     setTimeout(() => {
       setIsProcessing(false);
-    }, 1000);
-
-    if (!isFavExist) {
-      router.push(`?tab=favorites`, { scroll: false });
-    }
+    }, 500);
   };
 
   if (!hasHydrated) return null;

@@ -1,7 +1,6 @@
 'use client';
 
 import useLiveMarketData from "@/hooks/useLiveMarketData";
-import { LIVE_MARKET_PAIRS } from "@/lib/LiveMarketPair";
 import { formatCurrency } from "@/lib/utils";
 import { useLiveMarket } from "@/stores/MarketStore";
 import { LiveMarketPair } from "@/types";
@@ -30,7 +29,7 @@ export default function LiveMarket() {
                 ))
               }
               {
-                LIVE_MARKET_PAIRS.map((item, index) => (
+                marketPairs.map((item, index) => (
                   <LivePairItem key={`dup-${index}`} symbol={item.symbol} rate={item.rate} percentChange={item.percentChange} isPositive={item.isPositive} />
                 ))
               }
