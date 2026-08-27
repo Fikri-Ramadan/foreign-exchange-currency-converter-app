@@ -18,7 +18,7 @@ export default function TabCompare() {
 
   if (!hasHydrated) return null;
 
-  if (sendAmount === 0) {
+  if (sendAmount === 0 || sendAmount == null) {
     return (
       <div className="mx-auto mt-8 pb-10 text-center">
         <div className="mb-4 text-2xl text-neutral-100 tracking-wider">No comparison available</div>
