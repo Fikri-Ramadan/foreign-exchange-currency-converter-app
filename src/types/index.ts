@@ -74,6 +74,14 @@ export interface LogStore {
   clearLog: () => void;
 }
 
+export interface Compare {
+  baseCurrency: string,
+  rates: CompareRates,
+  setRates: (rates: CompareRates) => void;
+}
+
+export type CompareRates = Record<string, number>;
+
 export interface UserFavStore {
   favorites: Favorite[];
   checkFavoriteExist: ({ base, quote }: Pick<Favorite, 'base' | 'quote'>) => boolean;
