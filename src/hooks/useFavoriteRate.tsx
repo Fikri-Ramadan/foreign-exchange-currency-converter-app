@@ -12,8 +12,14 @@ export default function useFavoriteRate() {
 
   const currenciesToFetch = new Set<string>();
   favorites.forEach((fav) => {
-    if (fav.base === 'USD') currenciesToFetch.add(fav.quote);
-    else if (fav.quote === 'USD') currenciesToFetch.add(fav.base);
+    if (fav.base === 'USD') {
+      currenciesToFetch.add('USD');
+      currenciesToFetch.add(fav.quote);
+    }
+    else if (fav.quote === 'USD') {
+      currenciesToFetch.add(fav.base);
+      currenciesToFetch.add('USD');
+    }
     else {
       currenciesToFetch.add(fav.base);
       currenciesToFetch.add(fav.quote);
@@ -25,11 +31,11 @@ export default function useFavoriteRate() {
   const fromfiveDayAgo = fiveDayAgo.toISOString().split('T')[0];
 
   const { data, isLoading, isValidating, error } = useSWR(
-    `https://api.frankfurter.dev/v2/rates?from=${fromfiveDayAgo}&base=USD&quotes=${[...currenciesToFetch].toString()}`,
+    favorites.length === 0 ? null : `https://api.frankfurter.dev/v2/rates?from=${fromfiveDayAgo}&base=USD&quotes=${[...currenciesToFetch].toString()}`,
     fetcher,
     {
       onSuccess: (data) => {
-        if (data) {
+        if (data?.length > 0) {
           const USDRate: USDRateMap = {};
           data.forEach((item: RateListResponse) => {
             const oldLatest = USDRate[item.quote]?.latest ?? item.rate;
@@ -63,11 +69,16 @@ export default function useFavoriteRate() {
                 percentChange: percentChange,
                 isPositive: percentChange > 0
               }
-            }
-          })
+            };
+          });
           updateFavorites(updatedFavorites);
         }
-      }
+      },
+      onError: (err) => {
+        console.error('Failed to fetch:', err);
+      },
+      revalidateOnFocus: false,
+      dedupingInterval: 0,
     }
   );
 

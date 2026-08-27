@@ -60,7 +60,11 @@ export default function useLiveMarketData() {
           });
           setMarketPairs(marketPairs);
         }
-      }
+      },
+      onError: (err) => {
+        console.error('Failed to fetch:', err);
+      },
+      revalidateOnFocus: false,
     });
 
   return {

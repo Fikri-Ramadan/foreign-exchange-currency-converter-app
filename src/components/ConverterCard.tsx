@@ -4,6 +4,7 @@ import SwapCurrency from "./SwapCurrency";
 import RateInfo from "./RateInfo";
 import AddConversionButton from "./AddConversionButton";
 import AddFavButton from "./AddFavButton";
+import FooterButtonGroup from "./FooterButtonGroup";
 
 export default function ConverterCard() {
 
@@ -30,10 +31,7 @@ export default function ConverterCard() {
       </div>
       <div className="bg-neutral-700 h-16 rounded-b-3xl flex items-center justify-between px-5">
         <RateInfo />
-        <div className="space-x-2 flex">
-          <AddFavButton />
-          <AddConversionButton />
-        </div>
+        <FooterButtonGroup />
       </div>
     </div>
   );

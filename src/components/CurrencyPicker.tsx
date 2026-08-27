@@ -43,7 +43,7 @@ export default function CurrencyPicker({ type }: { type: 'SEND' | 'RECEIVE'; }) 
                   height={16}
                 />
               </> :
-              <div className="animate-pulse w-13 h-2 bg-neutral-400" />
+              <div className="animate-pulse w-13 h-2 bg-neutral-500" />
           }
         </Button>} />
         <PopoverContent align="end" className="w-95 p-0">

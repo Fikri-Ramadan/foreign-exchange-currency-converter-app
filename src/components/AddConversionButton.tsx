@@ -2,25 +2,16 @@
 
 import { useLogConversion } from "@/stores/LogConversionStore";
 import { Button } from "./ui/button";
-import { useConverter } from "@/stores/ConverterStore";
-import { useShallow } from "zustand/shallow";
 import useExchangeRate from "@/hooks/useExchangeRate";
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "./ui/toast";
+import { CurrencyConverter } from "@/types";
 
-export default function AddConversionButton() {
+export default function AddConversionButton({send, receive, sendAmount, receiveAmount}: Pick<CurrencyConverter, 'send' | 'receive' | 'sendAmount' | 'receiveAmount'>) {
   const router = useRouter();
   const { isValidating } = useExchangeRate();
-  const { send, receive, sendAmount, receiveAmount } = useConverter(
-    useShallow((state) => ({
-      send: state.send,
-      receive: state.receive,
-      sendAmount: state.sendAmount,
-      receiveAmount: state.receiveAmount
-    }))
-  );
   const addLog = useLogConversion((state) => state.addLog);
 
   const [isSaving, setIsSaving] = useState<boolean>(false);

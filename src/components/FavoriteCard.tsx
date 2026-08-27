@@ -22,7 +22,7 @@ export default function FavoriteCard({ id, base, quote, rateDetails, isValidatin
         <div className="flex flex-col items-end gap-1">
           {
             isValidating ?
-              <div className="animate-pulse bg-neutral-400 w-10 h-3 rounded-sm" />
+              <div className="animate-pulse bg-neutral-500 w-10 h-3 rounded-sm" />
               :
               <>
                 <div className="text-base text-neutral-100">{formatCurrency(rateDetails?.rate ?? 0, 4, 1)}</div>
