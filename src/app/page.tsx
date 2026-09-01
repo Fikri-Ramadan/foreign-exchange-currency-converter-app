@@ -10,7 +10,7 @@ export default function Home() {
       <div className="mb-10">
         <Header />
       </div>
-      <div className="px-5 space-y-12">
+      <div className="px-5 space-y-10">
         <ConverterCard />
         <Suspense fallback={<NavigationTabSkeleton />}>
           <NavigationTabs />

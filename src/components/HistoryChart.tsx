@@ -159,7 +159,7 @@ export default function HistoryChart() {
   });
 
   return (
-    <Card className="bg-neutral-700 rounded-3xl">
+    <Card className="bg-neutral-700 rounded-2xl">
       {/* <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
           <CardTitle>Area Chart - Interactive</CardTitle>
@@ -233,7 +233,12 @@ export default function HistoryChart() {
                   stopOpacity={0.8}
                 />
                 <stop
-                  offset="80%"
+                  offset="70%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={0.1}
+                />
+                <stop
+                  offset="90%"
                   stopColor="var(--color-desktop)"
                   stopOpacity={0.01}
                 />
