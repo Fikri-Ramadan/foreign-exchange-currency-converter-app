@@ -103,5 +103,6 @@ export type USDRateMap = Record<
   }>;
 
 export type TabValue = 'history' | 'compare' | 'favorites' | 'log';
+export type FilterValue = '1D' | '1W' | '1M' | '3M' | '1Y' | '5Y';
 
 export type TimeSubUnit = 'Y' | 'MO' | 'W' | 'D' | 'H' | 'M' | 'S';
