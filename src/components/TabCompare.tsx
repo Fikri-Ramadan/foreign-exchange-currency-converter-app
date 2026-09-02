@@ -39,10 +39,6 @@ export default function TabCompare() {
           <div className="text-xs text-neutral-100/70">{COMPARE_DATA.length - 1} PAIRS</div>
         </div>
       </div>
-
-      {isValidating ?
-        <div className="animate-pulse bg-neutral-500 w-full h-12 rounded-sm" />
-        :
         <div className="space-y-3">
           {
             COMPARE_DATA.map((item, index) => {
@@ -55,6 +51,7 @@ export default function TabCompare() {
                   quote={item}
                   sendAmount={sendAmount ?? 0}
                   rate={rates[item.code] ?? 0}
+                  isValidating={isValidating}
                 />
               );
             })
@@ -68,10 +65,10 @@ export default function TabCompare() {
               quote={COMPARE_DATA[COMPARE_DATA.length - 1]}
               sendAmount={sendAmount ?? 0}
               rate={rates[COMPARE_DATA[COMPARE_DATA.length - 1].code] ?? 0}
+              isValidating={isValidating}
             />
           }
         </div>
-      }
     </div>
   );
 }

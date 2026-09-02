@@ -9,6 +9,7 @@ import { useLogConversion } from "@/stores/LogConversionStore";
 import TabFavorites from "./TabFavorites";
 import { useUserFavorites } from "@/stores/UserFavoritesStore";
 import TabCompare from "./TabCompare";
+import TabHistory from "./TabHistory";
 
 export default function NavigationTabs() {
   const logs = useLogConversion((state) => state.logs);
@@ -33,7 +34,7 @@ export default function NavigationTabs() {
             <TabsTrigger value="favorites">FAVORITES <Badge amount={favorites.length} /></TabsTrigger>
             <TabsTrigger value="log">LOG <Badge amount={logs.length} /></TabsTrigger>
           </TabsList>
-          <TabsContent value="history" className={'mb-20'}>History</TabsContent>
+          <TabsContent value="history" className={'mb-20'}><TabHistory /></TabsContent>
           <TabsContent value="compare" className={'mb-20'}><TabCompare /></TabsContent>
           <TabsContent value="favorites" className={'mb-20'}><TabFavorites /></TabsContent>
           <TabsContent value="log" className={'mb-20'}><TabLog /></TabsContent>

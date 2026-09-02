@@ -9,9 +9,7 @@ export default function TabLog() {
   const logs = useLogConversion((state) => state.logs);
   const { hasHydrated } = useHasHydrated();
 
-  if (!hasHydrated) {
-    return <></>
-  }
+  if (!hasHydrated) null;
   
   if (logs.length === 0) {
     return (
