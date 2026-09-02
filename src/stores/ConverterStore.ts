@@ -18,6 +18,7 @@ const converterStore = create<CurrencyConverter>()(
       sendAmount: null,
       receiveAmount: null,
       rate: 0,
+      rateHistory: [],
       isSwapping: false,
       setSend: (curr: CurrencyOption) => set(() => ({
         send: { ...curr }
@@ -33,6 +34,9 @@ const converterStore = create<CurrencyConverter>()(
       })),
       setRate: (rate) => set(() => ({
         rate: rate,
+      })),
+      setRateHistory: (rates) => set(() => ({
+        rateHistory: [...rates]
       })),
       setSwapping: (condition) => set(() => ({
         isSwapping: condition,

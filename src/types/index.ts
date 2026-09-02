@@ -18,16 +18,20 @@ export interface CurrencyConverter {
   sendAmount: number | null;
   receiveAmount: number | null;
   rate: number;
+  rateHistory: RateHistory[];
   isSwapping: boolean;
   setSend: (curr: CurrencyOption) => void;
   setReceive: (curr: CurrencyOption) => void;
   setSendAmount: (amount: number) => void;
   setReceiveAmount: (amount: number) => void;
   setRate: (rate: number) => void;
+  setRateHistory: (rates: RateHistory[]) => void;
   setSwapping: (condition: boolean) => void;
   swapCurrency: () => void;
   log: () => void;
 }
+
+export type RateHistory = Pick<RateListResponse, 'date' | 'rate'>
 
 export interface LiveMarket {
   currenciesToFetch: string[],
@@ -97,12 +101,15 @@ export type Favorite = {
   rateDetails?: Pick<LiveMarketPair, 'rate' | 'change' | 'percentChange' | 'isPositive'>
 };
 
+
+
 export type USDRateMap = Record<
   string, {
     prev: number; latest: number;
   }>;
 
 export type TabValue = 'history' | 'compare' | 'favorites' | 'log';
+
 export type FilterValue = '1D' | '1W' | '1M' | '3M' | '1Y' | '5Y';
 
 export type TimeSubUnit = 'Y' | 'MO' | 'W' | 'D' | 'H' | 'M' | 'S';
