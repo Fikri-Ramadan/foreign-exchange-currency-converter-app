@@ -1,19 +1,22 @@
 'use client';
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { FilterValue } from "@/types";
 
 export default function FilterChartSection() {
   const router = useRouter();
-  
+  const params = useSearchParams();
+
+  const currentRange = (params.get('range') as FilterValue) || '1M';
+
   const handleChange = (value: string) => {
     const range = value as FilterValue;
     router.push(`?range=${range}`, { scroll: false });
   };
 
   return (
-    <Tabs defaultValue="1m" className="w-fit" onValueChange={handleChange}>
+    <Tabs className="w-fit" value={currentRange} onValueChange={handleChange}>
       <TabsList className="bg-neutral-700 text-neutral-100 md:h-10 border p-0">
         <TabsTriggerComp value="1D" />
         <TabsTriggerComp value="1W" />
