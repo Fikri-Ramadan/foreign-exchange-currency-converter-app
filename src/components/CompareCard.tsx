@@ -3,10 +3,9 @@ import Image from "next/image";
 import AddFavButton from "./AddFavButton";
 import { CurrencyOption } from "@/types";
 
-export default function CompareCard({ base, quote, sendAmount, rate }: {
-  base: CurrencyOption, quote: CurrencyOption; sendAmount: number; rate: number
+export default function CompareCard({ base, quote, sendAmount, rate, isValidating }: {
+  base: CurrencyOption, quote: CurrencyOption; sendAmount: number; rate: number; isValidating: boolean;
 }) {
-  const isValidating = false;
   return (
     <div className="flex justify-between border border-neutral-400 bg-neutral-600 rounded-md px-4 py-3 tracking-wide">
       <div className="flex items-center gap-12.5">
@@ -30,7 +29,7 @@ export default function CompareCard({ base, quote, sendAmount, rate }: {
         <div className="flex flex-col items-end gap-1">
           {
             isValidating ?
-              <div className="animate-pulse bg-neutral-500 w-10 h-3 rounded-sm" />
+              <div className="animate-pulse bg-neutral-500 w-10 h-5 rounded-sm" />
               :
               <>
                 <div className="text-base text-neutral-100">{formatCurrency(sendAmount * rate, 4)}</div>
