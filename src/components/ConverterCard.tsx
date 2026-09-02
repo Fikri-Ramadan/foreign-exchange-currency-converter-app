@@ -2,8 +2,6 @@ import CurrencySendGroup from "./CurrencySendGroup";
 import CurrencyReceiveGroup from "./CurrencyReceiveGroup";
 import SwapCurrency from "./SwapCurrency";
 import RateInfo from "./RateInfo";
-import AddConversionButton from "./AddConversionButton";
-import AddFavButton from "./AddFavButton";
 import FooterButtonGroup from "./FooterButtonGroup";
 
 export default function ConverterCard() {

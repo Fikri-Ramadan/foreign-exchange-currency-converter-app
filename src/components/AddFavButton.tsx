@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { useUserFavorites } from "@/stores/UserFavoritesStore";
-import { useConverter } from "@/stores/ConverterStore";
-import { useShallow } from "zustand/shallow";
 import { toast } from "./ui/toast";
 import useHasHydrated from "@/hooks/useHasHydrated";
 import useExchangeRate from "@/hooks/useExchangeRate";
