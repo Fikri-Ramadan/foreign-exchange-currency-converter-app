@@ -17,7 +17,7 @@ export default function FilterChartSection() {
 
   return (
     <Tabs className="w-fit" value={currentRange} onValueChange={handleChange}>
-      <TabsList className="bg-neutral-700 text-neutral-100 md:h-10 border p-0">
+      <TabsList className="bg-neutral-700 text-neutral-100 min-h-10 border p-0">
         <TabsTriggerComp value="1D" />
         <TabsTriggerComp value="1W" />
         <TabsTriggerComp value="1M" />

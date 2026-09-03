@@ -16,14 +16,14 @@ export default function RateCardInfoSection() {
     <>
       {
         isValidating ?
-          <div className="flex gap-4">
-            <div className="w-35 h-20 bg-neutral-600 rounded-2xl border animate-pulse" />
-            <div className="w-35 h-20 bg-neutral-600 rounded-2xl border animate-pulse" />
-            <div className="w-35 h-20 bg-neutral-600 rounded-2xl border animate-pulse" />
-            <div className="w-35 h-20 bg-neutral-600 rounded-2xl border animate-pulse" />
+          <div className="flex flex-wrap gap-3 md:gap-4">
+            <div className="flex-1/3 md:flex-1 w-35 h-20 bg-neutral-600 rounded-2xl border animate-pulse" />
+            <div className="flex-1/3 md:flex-1 w-35 h-20 bg-neutral-600 rounded-2xl border animate-pulse" />
+            <div className="flex-1/3 md:flex-1 w-35 h-20 bg-neutral-600 rounded-2xl border animate-pulse" />
+            <div className="flex-1/3 md:flex-1 w-35 h-20 bg-neutral-600 rounded-2xl border animate-pulse" />
           </div>
           :
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-3 md:gap-4">
             <RateCardInfo label="OPEN" value={open} />
             <RateCardInfo label="LAST" value={last} />
             <RateCardInfo label="CHANGE" value={last - open} isChange={true} />
@@ -42,9 +42,9 @@ function RateCardInfo({ label, value, isChange = false, isPercentage = false }: 
 }) {
   const isPositive = value >= 0;
   return (
-    <div className="bg-neutral-700 w-35 h-20 rounded-2xl border flex flex-col justify-between py-3 px-4 tracking-wide">
+    <div className="flex-1/3 md:flex-1 bg-neutral-700 w-35 h-20 rounded-2xl border flex flex-col justify-between py-2 md:py-3 px-5 md:px-4 tracking-wide">
       <div className="text-neutral-200">{label}</div>
-      <div className={`text-base font-light flex items-center ${isChange && (isPositive ? 'text-green-500' : 'text-red-500')}`}>
+      <div className={`text-xl md:text-base font-light flex items-center ${isChange && (isPositive ? 'text-green-500' : 'text-red-500')}`}>
         {isPercentage && <span className="text-[12.5px] pr-1.75 pt-1">{isPositive ? '▲' : '▼'}</span>}
         {isChange && <span>{isPositive ? '+' : '-'}</span>}
         <span>{formatCurrency(Math.abs(value), isPercentage ? 2 : 4, 1)}</span>

@@ -10,6 +10,7 @@ export default function SwapCurrency() {
   const { isValidating } = useExchangeRate();
 
   return (
+    <div className="w-full md:w-fit h-12 md:h-full flex justify-center items-center">
     <Button
       disabled={isValidating}
       className="w-12 h-12 m-auto bg-neutral-600 rounded-lg border border-neutral-400 hover:cursor-pointer hover:bg-neutral-500"
@@ -20,8 +21,9 @@ export default function SwapCurrency() {
         alt="icon exchange"
         width={20}
         height={20}
-        className=""
+        className="rotate-90 md:rotate-0"
       />
     </Button>
+    </div>
   );
 }

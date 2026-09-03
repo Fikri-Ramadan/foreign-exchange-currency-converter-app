@@ -64,7 +64,7 @@ export default function CurrencyInput({ inputRef, value, readonly = false }: { i
         value={inputValue}
         onChange={handleChange}
         className={`
-      text-xl md:text-3xl font-bold font-mono text-white
+      text-3xl md:text-3xl font-bold font-mono text-white
       h-auto p-1 w-auto field-sizing-content max-w-40 lg:max-w-72 box-content
       md:bg-white shadow-none md:shadow-none dark:bg-input/0
       border-0 hover:border-b border-neutral-200 rounded-none

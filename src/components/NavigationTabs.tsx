@@ -10,6 +10,7 @@ import TabFavorites from "./TabFavorites";
 import { useUserFavorites } from "@/stores/UserFavoritesStore";
 import TabCompare from "./TabCompare";
 import TabHistory from "./TabHistory";
+import NavigationTabMobile from "./NavigationTabMobile";
 
 export default function NavigationTabs() {
   const logs = useLogConversion((state) => state.logs);
@@ -18,7 +19,8 @@ export default function NavigationTabs() {
   const params = useSearchParams();
   const router = useRouter();
   const currentTab = (params.get('tab') as TabValue) ?? 'history';
-  const handleChange = (value: string) => {
+  const handleChange = (value: string | null) => {
+    if (value === null) return;
     const tab = value as TabValue;
     router.push(`?tab=${tab}`, { scroll: false });
   };
@@ -26,9 +28,18 @@ export default function NavigationTabs() {
   return (
     <div className="max-w-259 mx-auto">
       <div className="h-40 rounded-3xl">
-        <Tabs value={currentTab}
+        <Tabs
+          value={currentTab}
           onValueChange={handleChange}>
-          <TabsList variant={'line'} className={'mb-2'}>
+          <div className="sm:hidden mb-3">
+            <NavigationTabMobile
+              value={currentTab}
+              onValueChange={handleChange}
+              logsCount={logs.length}
+              favoritesCount={favorites.length}
+            />
+          </div>
+          <TabsList variant={'line'} className={'hidden sm:flex mb-2'}>
             <TabsTrigger value="history">HISTORY</TabsTrigger>
             <TabsTrigger value="compare">COMPARE</TabsTrigger>
             <TabsTrigger value="favorites">FAVORITES <Badge amount={favorites.length} /></TabsTrigger>

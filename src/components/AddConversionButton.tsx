@@ -40,12 +40,12 @@ export default function AddConversionButton({send, receive, sendAmount, receiveA
 
   return (
     <Button
-      className={'bg-transparent text-[12px] tracking-wider text-neutral-50 h-8 border border-lime-500 dark:hover:bg-lime-500/10'}
+      className={'bg-transparent text-[12px] tracking-widest font-light text-neutral-50 h-8 border-[1.5px] border-lime-500 dark:hover:bg-lime-500/10'}
       disabled={isValidating}
       onClick={handleSaveConversion}
     >{isSaving ? <div className="text-lime-500 flex items-center gap-0.5">
       LOGGED
       <Check className="text-lime-500" /></div> :
-      <>LOG CONVERTION</>}</Button>
+      <>LOG CONVERSION</>}</Button>
   );
 }
