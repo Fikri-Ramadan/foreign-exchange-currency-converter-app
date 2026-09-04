@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import Badge from "./Badge";
 
 interface NavigationTabMobileProps {
   value: TabValue | null;
@@ -27,7 +28,7 @@ export default function NavigationTabMobile({
   logsCount,
   favoritesCount
 }: NavigationTabMobileProps) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const activeTab = TABS_CONFIG.find((t) => t.id === value);
   const count = activeTab?.id === 'favorites' ? favoritesCount : activeTab?.id === 'log' ? logsCount : null;
@@ -36,22 +37,23 @@ export default function NavigationTabMobile({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger render={<Button
         variant="outline"
-        className="w-full justify-between bg-neutral-800 border-neutral-700 h-14 px-5 rounded-2xl text-white hover:bg-neutral-700 active:scale-[0.98] transition-all"
+        className="w-full justify-between border-neutral-700 h-14 px-5 rounded-lg text-white hover:bg-neutral-700 active:scale-[0.98] transition-all"
       >
         <div className="flex items-center gap-3">
-          {/* {activeTab?.icon && <activeTab.icon className="w-5 h-5 text-lime-500" />} */}
-          <span className="font-bold tracking-widest">{activeTab?.label}</span>
-          {count !== null && <span className="ml-2 opacity-50 text-xs">({count})</span>}
+          <span className="font-bold tracking-widest flex items-center gap-3">
+            {activeTab?.label}
+            {count !== null && <Badge amount={count} />}
+          </span>
         </div>
         <ChevronDown className={cn("w-5 h-5 text-neutral-400 transition-transform", open && "rotate-180")} />
       </Button>} />
 
-
       <PopoverContent
-        className="w-[370px] p-2 bg-neutral-800 border-neutral-700 rounded-2xl shadow-2xl"
+        style={{ width: 'var(--anchor-width)' }}
+        className="p-2 bg-neutral-600 border-neutral-700 rounded-2xl shadow-2xl"
         align="start"
       >
-        <div className="flex flex-col gap-1">
+        <div className="w-full flex flex-col gap-1">
           {TABS_CONFIG.map((tab) => {
             const isActive = value === tab.id;
             const count = tab.id === 'favorites' ? favoritesCount : tab.id === 'log' ? logsCount : null;
@@ -64,18 +66,16 @@ export default function NavigationTabMobile({
                   setOpen(false);
                 }}
                 className={cn(
-                  "flex items-center justify-between px-4 py-4 rounded-xl transition-colors text-left",
-                  isActive ? "bg-lime-500/10 text-lime-500" : "text-neutral-400 hover:bg-neutral-700/50"
+                  "bg-neutral-600 flex items-center justify-between px-4 py-4 rounded-xl transition-colors text-left",
+                  isActive ? "text-lime-500" : " hover:bg-neutral-600/50"
                 )}
               >
-                <div className="flex items-center gap-3">
-                  {/* <tab.icon className={cn("w-5 h-5", isActive ? "text-lime-500" : "text-neutral-500")} /> */}
-                  <span className="font-medium tracking-wide">
+                <div className="w-full flex items-center gap-3">
+                  <span className="w-full font-medium tracking-wide flex justify-between items-center">
                     {tab.label}
-                    {count !== null && <span className="ml-2 opacity-50 text-xs">({count})</span>}
+                    {count !== null && <Badge amount={count} />}
                   </span>
                 </div>
-                {isActive && <Check className="w-4 h-4" />}
               </button>
             );
           })}

@@ -45,10 +45,10 @@ export default function NavigationTabs() {
             <TabsTrigger value="favorites">FAVORITES <Badge amount={favorites.length} /></TabsTrigger>
             <TabsTrigger value="log">LOG <Badge amount={logs.length} /></TabsTrigger>
           </TabsList>
-          <TabsContent value="history" className={'mb-20'}><TabHistory /></TabsContent>
-          <TabsContent value="compare" className={'mb-20'}><TabCompare /></TabsContent>
-          <TabsContent value="favorites" className={'mb-20'}><TabFavorites /></TabsContent>
-          <TabsContent value="log" className={'mb-20'}><TabLog /></TabsContent>
+          <TabsContent value="history" className={'mb-10'}><TabHistory /></TabsContent>
+          <TabsContent value="compare" className={'mb-10'}><TabCompare /></TabsContent>
+          <TabsContent value="favorites" className={'mb-10'}><TabFavorites /></TabsContent>
+          <TabsContent value="log" className={'mb-10'}><TabLog /></TabsContent>
         </Tabs>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default function CompareCard({ base, quote, sendAmount, rate, isValidatin
   return (
     <div className="flex justify-between border border-neutral-400 bg-neutral-600 rounded-md px-4 py-3 tracking-wide">
       <div className="flex items-center gap-12.5">
-        <div className="text-neutral-100 flex items-center gap-5">
+        <div className="text-neutral-100 flex items-center gap-2 md:gap-5">
           <div>
             <Image
               src={`/assets/images/flags/${quote.flag}.webp`}
@@ -25,7 +25,7 @@ export default function CompareCard({ base, quote, sendAmount, rate, isValidatin
           </div>
         </div>
       </div>
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-2 md:gap-5">
         <div className="flex flex-col items-end gap-1">
           {
             isValidating ?
