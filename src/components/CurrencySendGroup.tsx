@@ -10,9 +10,9 @@ export default function CurrencySendGroup() {
   const sendAmount = useConverter((state) => state.sendAmount);
 
   return (
-    <div className="bg-neutral-600 flex-1 rounded-3xl border border-neutral-400 p-5 flex flex-col">
+    <div className="bg-neutral-600 md:flex-1 rounded-3xl border border-neutral-400 p-4 md:p-5 space-y-4 md:space-y-0 flex flex-col">
       <span className="text-[15px] text-neutral-200 tracking-wider">SEND</span>
-      <div className="flex flex-1 items-end justify-between">
+      <div className="flex md:flex-1 items-end justify-between">
         <CurrencyInput inputRef={inputRef} value={sendAmount?.toString() ?? ''} />
         <CurrencyPicker type="SEND" />
       </div>

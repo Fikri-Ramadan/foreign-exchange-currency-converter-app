@@ -40,7 +40,7 @@ export default function HistoryChart({ base, quote, data }: { base: string; quot
 
   return (
     <Card className="bg-neutral-700 rounded-2xl">
-      <CardHeader className="h-0 px-5 pt-1 flex justify-between">
+      <CardHeader className="h-0 px-3 md:px-5 pt-3 flex justify-between items-center">
         <div className="text-sm tracking-widest">
           {base + '/' + quote}
         </div>

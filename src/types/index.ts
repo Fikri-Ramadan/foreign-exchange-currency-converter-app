@@ -19,6 +19,7 @@ export interface CurrencyConverter {
   receiveAmount: number | null;
   rate: number;
   rateHistory: RateHistory[];
+  rateCompare: CompareRates;
   isSwapping: boolean;
   setSend: (curr: CurrencyOption) => void;
   setReceive: (curr: CurrencyOption) => void;
@@ -26,12 +27,14 @@ export interface CurrencyConverter {
   setReceiveAmount: (amount: number) => void;
   setRate: (rate: number) => void;
   setRateHistory: (rates: RateHistory[]) => void;
+  setRateCompare: (rates: CompareRates) => void;
   setSwapping: (condition: boolean) => void;
   swapCurrency: () => void;
   log: () => void;
 }
 
 export type RateHistory = Pick<RateListResponse, 'date' | 'rate'>
+export type CompareRates = Record<string, number>;
 
 export interface LiveMarket {
   currenciesToFetch: string[],
@@ -77,14 +80,6 @@ export interface LogStore {
   deleteLogById: (id: string) => void;
   clearLog: () => void;
 }
-
-export interface Compare {
-  baseCurrency: string,
-  rates: CompareRates,
-  setRates: (rates: CompareRates) => void;
-}
-
-export type CompareRates = Record<string, number>;
 
 export interface UserFavStore {
   favorites: Favorite[];

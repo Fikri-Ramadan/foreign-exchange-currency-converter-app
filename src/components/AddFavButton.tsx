@@ -105,7 +105,7 @@ function BtnTypeButton({ isFavExist, action, isValidatingExchange, isValidatingF
   return (
     <Button
       className={`${isFavExist ? 'text-neutral-900 bg-lime-500 hover:bg-lime-500/90' : 'text-neutral-50 bg-neutral-600 hover:bg-neutral-500'}
-                text-[12px] tracking-wider font-bold h-8`}
+                text-[12px] tracking-widest font-bold h-8`}
       onClick={action}
       disabled={isValidatingExchange || isValidatingFav || isProcessing}
     >

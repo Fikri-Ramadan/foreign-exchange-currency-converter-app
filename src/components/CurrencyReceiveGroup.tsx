@@ -10,9 +10,9 @@ export default function CurrencyReceiveGroup() {
   const receiveAmount = useConverter((state) => state.receiveAmount);
 
   return (
-    <div className="bg-neutral-600 flex-1 rounded-3xl border border-neutral-400 p-5 flex flex-col">
+    <div className="bg-neutral-600 md:flex-1 rounded-3xl border border-neutral-400 p-4 md:p-5 space-y-4 md:space-y-0 flex flex-col">
       <span className="text-[15px] text-neutral-200 tracking-wider">RECEIVE</span>
-      <div className="flex flex-1 items-end justify-between">
+      <div className="flex md:flex-1 items-end justify-between">
         <CurrencyInput inputRef={inputRef} value={(receiveAmount ?? 0).toString()} readonly />
         <CurrencyPicker type="RECEIVE" />
       </div>

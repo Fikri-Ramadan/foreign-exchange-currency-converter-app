@@ -46,7 +46,7 @@ export default function CurrencyPicker({ type }: { type: 'SEND' | 'RECEIVE'; }) 
               <div className="animate-pulse w-13 h-2 bg-neutral-500" />
           }
         </Button>} />
-        <PopoverContent align="end" className="w-95 p-0">
+        <PopoverContent align="end" className="w-75 md:w-95 p-0">
           <CommandBox type={type} codePicked={type == 'SEND' ? send.code : receive.code} setOpen={setOpen} />
         </PopoverContent>
       </Popover>
@@ -58,7 +58,7 @@ export default function CurrencyPicker({ type }: { type: 'SEND' | 'RECEIVE'; }) 
 function CommandBox({ type, codePicked, setOpen }: { type: 'SEND' | 'RECEIVE'; codePicked: string; setOpen: (open: boolean) => void; }) {
   return (
     <div className="flex flex-col gap-4">
-      <Command className="w-95 bg-neutral-600" >
+      <Command className="w-75 md:w-95 bg-neutral-600" >
         <CommandInput placeholder="Search currencies..." />
         <CommandList>
           <CommandEmpty>No CURRENCIES found.</CommandEmpty>

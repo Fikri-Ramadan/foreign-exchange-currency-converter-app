@@ -16,10 +16,10 @@ export default function TabFavorites() {
 
   if (favorites.length === 0) {
     return (
-      <div className="mx-auto mt-8 pb-10 text-center">
-        <div className="mb-4 text-2xl text-neutral-100 tracking-wider">No pinned pairs yet</div>
-        <div className="text-lg text-neutral-200 tracking-wide">Pin a pair to track its rate here. Tap the star</div>
-        <div className="text-lg text-neutral-200 tracking-wide">icon on any conversion or comparison row.</div>
+      <div className="mx-auto my-8 pb-10 px-5 text-center">
+        <div className="mb-6 md:mb-4 text-xl md:text-2xl text-neutral-100 tracking-wider">No pinned pairs yet</div>
+        <div className="mb-1 md:mb-0 text-base md:text-lg text-neutral-200 tracking-wide">Pin a pair to track its rate here. Tap the star</div>
+        <div className="text-base md:text-lg text-neutral-200 tracking-wide">icon on any conversion or comparison row.</div>
       </div>
     );
   }
