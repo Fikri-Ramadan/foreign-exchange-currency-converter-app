@@ -1,7 +1,7 @@
 'use client';
 
 import { TabValue } from "@/types";
-import { Check, ChevronDown, History, ListTodo, Repeat, Star } from "lucide-react";
+import { ChevronDown, History, ListTodo, Repeat, Star } from "lucide-react";
 import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";

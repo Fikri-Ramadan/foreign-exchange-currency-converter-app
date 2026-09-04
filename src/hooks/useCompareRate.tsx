@@ -1,13 +1,15 @@
 import { COMPARE_DATA } from "@/lib/CompareData";
 import { fetcher } from "@/lib/utils";
-import { useCompare } from "@/stores/CompareStore";
 import { useConverter } from "@/stores/ConverterStore";
 import { CompareRates, RateListResponse } from "@/types";
 import useSWR from "swr";
+import { useShallow } from "zustand/shallow";
 
 export default function useCompareRate() {
-  const send = useConverter(state => state.send);
-  const setRates = useCompare(state => state.setRates);
+  const {send, setRates} = useConverter(useShallow((state) => ({
+    send: state.send,
+    setRates: state.setRateCompare
+  })))
 
   const currenciesToFetch = COMPARE_DATA.map((data) => data.code);
 

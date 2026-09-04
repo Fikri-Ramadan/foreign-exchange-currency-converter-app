@@ -6,15 +6,17 @@ import CompareCard from "./CompareCard";
 import useCompareRate from "@/hooks/useCompareRate";
 import { COMPARE_DATA } from "@/lib/CompareData";
 import { useConverter } from "@/stores/ConverterStore";
-import { useCompare } from "@/stores/CompareStore";
+import { useShallow } from "zustand/shallow";
 
 export default function TabCompare() {
   const { hasHydrated } = useHasHydrated();
   const { isValidating } = useCompareRate();
 
-  const send = useConverter(state => state.send);
-  const sendAmount = useConverter(state => state.sendAmount);
-  const rates = useCompare(state => state.rates);
+  const { send, sendAmount, rates } = useConverter(useShallow((state) => ({
+    send: state.send,
+    sendAmount: state.sendAmount,
+    rates: state.rateCompare
+  })));
 
   if (!hasHydrated) return null;
 
@@ -39,36 +41,36 @@ export default function TabCompare() {
           <div className="text-xs text-neutral-100/70">{COMPARE_DATA.length - 1} PAIRS</div>
         </div>
       </div>
-        <div className="space-y-3">
-          {
-            COMPARE_DATA.map((item, index) => {
-              if (send.code === item.code) return;
-              if (item.code === 'AED') return;
-              return (
-                <CompareCard
-                  key={index}
-                  base={send}
-                  quote={item}
-                  sendAmount={sendAmount ?? 0}
-                  rate={rates[item.code] ?? 0}
-                  isValidating={isValidating}
-                />
-              );
-            })
-          }
-          {
-            COMPARE_DATA.some(item => item.code === send.code)
-            &&
-            // data from last index of COMPARE_DATA
-            <CompareCard
-              base={send}
-              quote={COMPARE_DATA[COMPARE_DATA.length - 1]}
-              sendAmount={sendAmount ?? 0}
-              rate={rates[COMPARE_DATA[COMPARE_DATA.length - 1].code] ?? 0}
-              isValidating={isValidating}
-            />
-          }
-        </div>
+      <div className="space-y-3">
+        {
+          COMPARE_DATA.map((item, index) => {
+            if (send.code === item.code) return;
+            if (item.code === 'AED') return;
+            return (
+              <CompareCard
+                key={index}
+                base={send}
+                quote={item}
+                sendAmount={sendAmount ?? 0}
+                rate={rates[item.code] ?? 0}
+                isValidating={isValidating}
+              />
+            );
+          })
+        }
+        {
+          COMPARE_DATA.some(item => item.code === send.code)
+          &&
+          // data from last index of COMPARE_DATA
+          <CompareCard
+            base={send}
+            quote={COMPARE_DATA[COMPARE_DATA.length - 1]}
+            sendAmount={sendAmount ?? 0}
+            rate={rates[COMPARE_DATA[COMPARE_DATA.length - 1].code] ?? 0}
+            isValidating={isValidating}
+          />
+        }
+      </div>
     </div>
   );
 }
